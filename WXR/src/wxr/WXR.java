@@ -37,13 +37,14 @@ public class WXR extends javax.swing.JFrame {
         autoButton = new javax.swing.JButton();
         manualButton = new javax.swing.JButton();
         stabilizationTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        onStabilizationButton = new javax.swing.JButton();
         offStabilizationButton = new javax.swing.JButton();
         editTiltAngleTextField = new javax.swing.JTextField();
         currentValueTiltAngleTextField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         newValueTiltAngleTextField = new javax.swing.JTextField();
+        currentValueTiltAngleDisplayTextField = new javax.swing.JTextField();
+        newValueTiltAngleDisplayTextField = new javax.swing.JTextField();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,25 +95,35 @@ public class WXR extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("MODE", modePanel);
 
+        tiltAngleModeTextField.setEditable(false);
         tiltAngleModeTextField.setText("Tilt Angle Mode:");
 
         autoButton.setText("AUTO");
 
         manualButton.setText("MANUAL");
 
+        stabilizationTextField.setEditable(false);
         stabilizationTextField.setText("Stabilization:");
 
-        jButton1.setText("ON");
+        onStabilizationButton.setText("ON");
 
         offStabilizationButton.setText("OFF");
 
+        editTiltAngleTextField.setEditable(false);
         editTiltAngleTextField.setText("Edit Tilt Angle:");
 
+        currentValueTiltAngleTextField.setEditable(false);
         currentValueTiltAngleTextField.setText("The current value:");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        newValueTiltAngleTextField.setEditable(false);
+        newValueTiltAngleTextField.setText("Enter the new value:");
 
-        newValueTiltAngleTextField.setText("The new value:");
+        currentValueTiltAngleDisplayTextField.setEditable(false);
+        currentValueTiltAngleDisplayTextField.setText("15");
+
+        newValueTiltAngleDisplayTextField.setText("XX");
+
+        okButton.setText("OK");
 
         javax.swing.GroupLayout tiltAnglePanelLayout = new javax.swing.GroupLayout(tiltAnglePanel);
         tiltAnglePanel.setLayout(tiltAnglePanelLayout);
@@ -128,12 +139,12 @@ public class WXR extends javax.swing.JFrame {
                             .addGroup(tiltAnglePanelLayout.createSequentialGroup()
                                 .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(autoButton)
-                                    .addComponent(jButton1))
+                                    .addComponent(onStabilizationButton))
                                 .addGap(37, 37, 37)
                                 .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(offStabilizationButton)
-                                    .addComponent(manualButton))))
-                        .addContainerGap(182, Short.MAX_VALUE))
+                                    .addComponent(manualButton)
+                                    .addComponent(offStabilizationButton))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tiltAnglePanelLayout.createSequentialGroup()
                         .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(editTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,9 +153,14 @@ public class WXR extends javax.swing.JFrame {
                                 .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(newValueTiltAngleTextField)
                                     .addComponent(currentValueTiltAngleTextField))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(currentValueTiltAngleDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(tiltAnglePanelLayout.createSequentialGroup()
+                                        .addComponent(newValueTiltAngleDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(okButton)))))
+                        .addGap(0, 142, Short.MAX_VALUE))))
         );
         tiltAnglePanelLayout.setVerticalGroup(
             tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,20 +175,20 @@ public class WXR extends javax.swing.JFrame {
                 .addComponent(stabilizationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(onStabilizationButton)
                     .addComponent(offStabilizationButton))
-                .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tiltAnglePanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(editTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(currentValueTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tiltAnglePanelLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(editTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentValueTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(currentValueTiltAngleDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newValueTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(tiltAnglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newValueTiltAngleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newValueTiltAngleDisplayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(okButton))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("TILT ANGLE", tiltAnglePanel);
@@ -181,7 +197,7 @@ public class WXR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,17 +244,18 @@ public class WXR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton autoButton;
+    private javax.swing.JTextField currentValueTiltAngleDisplayTextField;
     private javax.swing.JTextField currentValueTiltAngleTextField;
     private javax.swing.JTextField editTiltAngleTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton manualButton;
     private javax.swing.JPanel modePanel;
+    private javax.swing.JTextField newValueTiltAngleDisplayTextField;
     private javax.swing.JTextField newValueTiltAngleTextField;
     private javax.swing.JButton offModeButton;
     private javax.swing.JButton offStabilizationButton;
+    private javax.swing.JButton okButton;
+    private javax.swing.JButton onStabilizationButton;
     private javax.swing.JTextField stabilizationTextField;
     private javax.swing.JButton stdbyButton;
     private javax.swing.JTextField tiltAngleModeTextField;
