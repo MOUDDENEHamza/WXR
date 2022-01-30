@@ -10,6 +10,110 @@ package wxr;
  * @author ncazes2
  */
 public class WXR extends javax.swing.JFrame {
+    // L'énumération des états possibles 
+    private enum PossibleState {
+        // Premier état : tous les boutons du panneau Mode sont accessibles, 
+        // dans le panneau Tilt Angle, on peut appuyer sur Manual ou Auto (on est en Mode auto)
+        E1(true, true, true, true, true, 
+            true, true, false, false, false),
+        // Deuxième état : tous les boutons du panneau Mode sont accessibles, 
+        // dans le panneau Tilt Angle, les boutons Manual, Auto et ceux de la 
+        // stabilisation sont accesibles
+        E2(true, true, true, true, true, 
+            true, true, true, true, false),
+        // Troisième état : tous les boutons du panneau Mode sont accessibles, 
+        // ainsi que ceux du panneau Tilt Angle
+        E3(true, true, true, true, true, 
+            true, true, true, true, true);
+        
+        // pour le panneau Mode
+        private final Boolean wxonButtonEnabled;        
+        private final Boolean tstButtonEnabled;
+        private final Boolean wxaButtonEnabled;
+        private final Boolean offModeButtonEnabled;       
+        private final Boolean stdbyButtonEnabled;
+        // pour le panneau Tilt Angle
+        private final Boolean autoButtonEnabled;
+        private final Boolean manualButtonEnabled;
+        private final Boolean onStabilizationButtonEnabled;
+        private final Boolean offStabilizationButtonEnabled;
+        private final Boolean okButtonEnabled;
+
+
+        // Le constructeur est privé car il ne sera appelé qu'à l'intérieur de
+        // l'énumération
+        private PossibleState(final Boolean wxonButtonEnabled, 
+                final Boolean tstButtonEnabled, 
+                final Boolean wxaButtonEnabled, 
+                final Boolean offButtonEnabled, 
+                final Boolean stdbyButtonEnabled,
+                final Boolean autoButtonEnabled,
+                final Boolean manualButtonEnabled, 
+                final Boolean onStabilizationButtonEnabled, 
+                final Boolean offStabilizationButtonEnabled, 
+                final Boolean okButtonEnabled) {
+
+            // pour le panneau Mode
+            this.wxonButtonEnabled = wxonButtonEnabled;
+            this.tstButtonEnabled = tstButtonEnabled;
+            this.wxaButtonEnabled = wxaButtonEnabled;
+            this.offModeButtonEnabled = offButtonEnabled;            
+            this.stdbyButtonEnabled = stdbyButtonEnabled;
+
+            // pour le panneau Tilt Angle
+            this.autoButtonEnabled = autoButtonEnabled;
+            this.manualButtonEnabled = manualButtonEnabled;
+            this.onStabilizationButtonEnabled = onStabilizationButtonEnabled;
+            this.offStabilizationButtonEnabled = offStabilizationButtonEnabled;
+            this.okButtonEnabled = okButtonEnabled;
+        }
+
+        public Boolean getWxonButtonEnabled() {
+            return wxonButtonEnabled;
+        }
+
+        public Boolean getTstButtonEnabled() {
+            return tstButtonEnabled;
+        }
+
+        public Boolean getWxaButtonEnabled() {
+            return wxaButtonEnabled;
+        }
+
+        public Boolean getOffModeButtonEnabled() {
+            return offModeButtonEnabled;
+        }
+
+        public Boolean getStdbyButtonEnabled() {
+            return stdbyButtonEnabled;
+        }
+
+        public Boolean getAutoButtonEnabled() {
+            return autoButtonEnabled;
+        }
+
+        public Boolean getManualButtonEnabled() {
+            return manualButtonEnabled;
+        }
+
+        public Boolean getOnStabilizationButtonEnabled() {
+            return onStabilizationButtonEnabled;
+        }
+
+        public Boolean getOffStabilizationButtonEnabled() {
+            return offStabilizationButtonEnabled;
+        }
+
+        public Boolean getOkButtonEnabled() {
+            return okButtonEnabled;
+        }
+
+
+        
+    }
+
+    // Etat courant 
+    private PossibleState currentState; 
 
     /** Creates new form WXR */
     public WXR() {
@@ -49,14 +153,39 @@ public class WXR extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         wxonButton.setText("WXON");
+        wxonButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wxonButtonActionPerformed(evt);
+            }
+        });
 
         tstButton.setText("TST");
+        tstButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tstButtonActionPerformed(evt);
+            }
+        });
 
         wxaButton.setText("WXA");
+        wxaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wxaButtonActionPerformed(evt);
+            }
+        });
 
         offModeButton.setText("OFF");
+        offModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offModeButtonActionPerformed(evt);
+            }
+        });
 
         stdbyButton.setText("STDBY");
+        stdbyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stdbyButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout modePanelLayout = new javax.swing.GroupLayout(modePanel);
         modePanel.setLayout(modePanelLayout);
@@ -99,15 +228,35 @@ public class WXR extends javax.swing.JFrame {
         tiltAngleModeTextField.setText("Tilt Angle Mode:");
 
         autoButton.setText("AUTO");
+        autoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoButtonActionPerformed(evt);
+            }
+        });
 
         manualButton.setText("MANUAL");
+        manualButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manualButtonActionPerformed(evt);
+            }
+        });
 
         stabilizationTextField.setEditable(false);
         stabilizationTextField.setText("Stabilization:");
 
         onStabilizationButton.setText("ON");
+        onStabilizationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onStabilizationButtonActionPerformed(evt);
+            }
+        });
 
         offStabilizationButton.setText("OFF");
+        offStabilizationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offStabilizationButtonActionPerformed(evt);
+            }
+        });
 
         editTiltAngleTextField.setEditable(false);
         editTiltAngleTextField.setText("Edit Tilt Angle:");
@@ -124,6 +273,11 @@ public class WXR extends javax.swing.JFrame {
         newValueTiltAngleDisplayTextField.setText("XX");
 
         okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tiltAnglePanelLayout = new javax.swing.GroupLayout(tiltAnglePanel);
         tiltAnglePanel.setLayout(tiltAnglePanelLayout);
@@ -197,7 +351,7 @@ public class WXR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,6 +360,46 @@ public class WXR extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void wxonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxonButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wxonButtonActionPerformed
+
+    private void tstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tstButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tstButtonActionPerformed
+
+    private void wxaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wxaButtonActionPerformed
+
+    private void offModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offModeButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_offModeButtonActionPerformed
+
+    private void stdbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdbyButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stdbyButtonActionPerformed
+
+    private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoButtonActionPerformed
+
+    private void manualButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manualButtonActionPerformed
+
+    private void onStabilizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onStabilizationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onStabilizationButtonActionPerformed
+
+    private void offStabilizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offStabilizationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_offStabilizationButtonActionPerformed
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments

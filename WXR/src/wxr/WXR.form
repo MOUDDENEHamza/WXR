@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="400" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -94,26 +94,41 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="WXON"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wxonButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tstButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="TST"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tstButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="wxaButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="WXA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wxaButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="offModeButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="OFF"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offModeButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="stdbyButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="STDBY"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stdbyButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -222,11 +237,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="AUTO"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autoButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manualButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="MANUAL"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manualButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="stabilizationTextField">
               <Properties>
@@ -238,11 +259,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="ON"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onStabilizationButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="offStabilizationButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="OFF"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="offStabilizationButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="editTiltAngleTextField">
               <Properties>
@@ -277,6 +304,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="OK"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
