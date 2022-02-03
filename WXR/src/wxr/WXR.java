@@ -15,16 +15,16 @@ public class WXR extends javax.swing.JFrame {
         // Premier état : tous les boutons du panneau Mode sont accessibles, 
         // dans le panneau Tilt Angle, on peut appuyer sur Manual ou Auto (on est en Mode auto)
         E1(true, true, true, true, true, 
-            true, true, false, false, false),
+            true, true, false, false, false, false),
         // Deuxième état : tous les boutons du panneau Mode sont accessibles, 
         // dans le panneau Tilt Angle, les boutons Manual, Auto et ceux de la 
         // stabilisation sont accesibles
         E2(true, true, true, true, true, 
-            true, true, true, true, false),
+            true, true, true, true, false, false),
         // Troisième état : tous les boutons du panneau Mode sont accessibles, 
         // ainsi que ceux du panneau Tilt Angle
         E3(true, true, true, true, true, 
-            true, true, true, true, true);
+            true, true, true, true, true, true);
         
         // pour le panneau Mode
         private final Boolean wxonButtonEnabled;        
@@ -37,6 +37,7 @@ public class WXR extends javax.swing.JFrame {
         private final Boolean manualButtonEnabled;
         private final Boolean onStabilizationButtonEnabled;
         private final Boolean offStabilizationButtonEnabled;
+        private final Boolean newValueTiltAngleDisplayTextFieldEditable;
         private final Boolean okButtonEnabled;
 
 
@@ -45,19 +46,20 @@ public class WXR extends javax.swing.JFrame {
         private PossibleState(final Boolean wxonButtonEnabled, 
                 final Boolean tstButtonEnabled, 
                 final Boolean wxaButtonEnabled, 
-                final Boolean offButtonEnabled, 
+                final Boolean offModeButtonEnabled, 
                 final Boolean stdbyButtonEnabled,
                 final Boolean autoButtonEnabled,
                 final Boolean manualButtonEnabled, 
                 final Boolean onStabilizationButtonEnabled, 
                 final Boolean offStabilizationButtonEnabled, 
+                final Boolean newValueTiltAngleDisplayTextFieldEditable, 
                 final Boolean okButtonEnabled) {
 
             // pour le panneau Mode
             this.wxonButtonEnabled = wxonButtonEnabled;
             this.tstButtonEnabled = tstButtonEnabled;
             this.wxaButtonEnabled = wxaButtonEnabled;
-            this.offModeButtonEnabled = offButtonEnabled;            
+            this.offModeButtonEnabled = offModeButtonEnabled;            
             this.stdbyButtonEnabled = stdbyButtonEnabled;
 
             // pour le panneau Tilt Angle
@@ -65,6 +67,7 @@ public class WXR extends javax.swing.JFrame {
             this.manualButtonEnabled = manualButtonEnabled;
             this.onStabilizationButtonEnabled = onStabilizationButtonEnabled;
             this.offStabilizationButtonEnabled = offStabilizationButtonEnabled;
+            this.newValueTiltAngleDisplayTextFieldEditable = newValueTiltAngleDisplayTextFieldEditable;
             this.okButtonEnabled = okButtonEnabled;
         }
 
@@ -104,12 +107,13 @@ public class WXR extends javax.swing.JFrame {
             return offStabilizationButtonEnabled;
         }
 
+        public Boolean getNewValueTiltAngleDisplayTextFieldEditable() {
+            return newValueTiltAngleDisplayTextFieldEditable;
+        }
+
         public Boolean getOkButtonEnabled() {
             return okButtonEnabled;
         }
-
-
-        
     }
 
     // Etat courant 
@@ -118,6 +122,26 @@ public class WXR extends javax.swing.JFrame {
     /** Creates new form WXR */
     public WXR() {
         initComponents();
+        // Spécifier l'état initial (voir le graphique si besoin)
+        goToState(PossibleState.E1);
+    }
+
+    public void goToState(PossibleState state) {
+        // Nouvel état courant
+        currentState = state;
+        // Mise à jour de l'aspect graphique en fonction de la valeur des 
+        // attributs liés au nouvel état courant
+        wxonButton.setEnabled(state.wxonButtonEnabled);
+        tstButton.setEnabled(state.tstButtonEnabled);
+        offModeButton.setEnabled(state.offModeButtonEnabled);
+        wxaButton.setEnabled(state.wxaButtonEnabled);
+        stdbyButton.setEnabled(state.stdbyButtonEnabled);
+        autoButton.setEnabled(state.autoButtonEnabled);
+        manualButton.setEnabled(state.manualButtonEnabled);
+        onStabilizationButton.setEnabled(state.onStabilizationButtonEnabled);
+        offStabilizationButton.setEnabled(state.offStabilizationButtonEnabled);
+        newValueTiltAngleDisplayTextField.setEnabled(state.newValueTiltAngleDisplayTextFieldEditable);
+        okButton.setEnabled(state.okButtonEnabled);
     }
 
     /** This method is called from within the constructor to
@@ -362,43 +386,159 @@ public class WXR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void wxonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxonButtonActionPerformed
-        // TODO add your handling code here:
+        switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_wxonButtonActionPerformed
 
     private void tstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tstButtonActionPerformed
-        // TODO add your handling code here:
+        switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_tstButtonActionPerformed
 
     private void wxaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxaButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_wxaButtonActionPerformed
 
     private void offModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offModeButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_offModeButtonActionPerformed
 
     private void stdbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdbyButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_stdbyButtonActionPerformed
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E2:
+                goToState(PossibleState.E1); 
+                break; 
+            case E3:
+                goToState(PossibleState.E1); 
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_autoButtonActionPerformed
 
     private void manualButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                goToState(PossibleState.E2);
+                break; 
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_manualButtonActionPerformed
 
     private void onStabilizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onStabilizationButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                throw new IllegalStateException();
+            case E2:
+                goToState(PossibleState.E3);
+                break; 
+            case E3:
+                goToState(PossibleState.E2);
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_onStabilizationButtonActionPerformed
 
     private void offStabilizationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offStabilizationButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                throw new IllegalStateException();
+            case E2:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException(); 
+        }
     }//GEN-LAST:event_offStabilizationButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // TODO add your handling code here:
+       switch(currentState) {
+            case E1:
+                throw new IllegalStateException();
+            case E2:
+                throw new IllegalStateException(); 
+            case E3:
+                // On ne fait rien, on reste dans le même état
+                break; 
+            default: 
+                throw new IllegalStateException();
+        }   
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**
