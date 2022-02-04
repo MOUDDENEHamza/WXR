@@ -125,20 +125,17 @@ public class WXR extends javax.swing.JFrame {
 
     // Etat courant 
     private PossibleState currentState;
-    private List<javax.swing.JButton> modeButtons = new ArrayList<javax.swing.JButton>(); 
+    private List<javax.swing.JButton> modeButtons = new ArrayList<javax.swing.JButton>();
+    private List<javax.swing.JButton> tiltAngleButtons = new ArrayList<javax.swing.JButton>();
 
     /** Creates new form WXR */
     public WXR() {
         initComponents();
-        initColorOfTextFields(); 
+        initModeButtons();
+        initTiltAngleButtons(); 
+
         // Spécifier l'état initial
         goToState(PossibleState.E1);
-        // Remplir la liste des boutons
-        modeButtons.add(wxaButton); 
-        modeButtons.add(wxonButton);
-        modeButtons.add(tstButton);
-        modeButtons.add(offModeButton);
-        modeButtons.add(stdbyButton);
     }
 
     public void goToState(PossibleState state) {
@@ -169,6 +166,9 @@ public class WXR extends javax.swing.JFrame {
     public void colorAutoOrManualButton(javax.swing.JButton button) {
         autoButton.setBackground(Color.LIGHT_GRAY);
         manualButton.setBackground(Color.LIGHT_GRAY);
+        // Pour éviter que ces derniers restent enclenchés après un changement d'état
+        onStabilizationButton.setBackground(Color.LIGHT_GRAY);
+        offStabilizationButton.setBackground(Color.LIGHT_GRAY);
         
         button.setBackground(Color.GREEN);
     }
@@ -179,12 +179,31 @@ public class WXR extends javax.swing.JFrame {
         
         button.setBackground(Color.GREEN);
     }
-    
-    public void initColorOfTextFields() {
-        currentValueTiltAngleDisplayTextField.setOpaque(true); 
-        currentValueTiltAngleDisplayTextField.setBackground(new Color(238, 238, 238));
-        currentValueTiltAngleTextField.setBackground(new Color(238, 238, 238));
+
+    public void initModeButtons() {
+        // Remplir la liste des boutons du panneau Mode
+        modeButtons.add(wxaButton); 
+        modeButtons.add(wxonButton);
+        modeButtons.add(tstButton);
+        modeButtons.add(offModeButton);
+        modeButtons.add(stdbyButton);
     }
+    
+    public void initTiltAngleButtons() {
+        // Remplir la liste des boutons du panneau Tilt Angle
+        tiltAngleButtons.add(autoButton); 
+        tiltAngleButtons.add(manualButton);               
+        tiltAngleButtons.add(onStabilizationButton);
+        tiltAngleButtons.add(offStabilizationButton);
+        tiltAngleButtons.add(okButton);
+        
+        // Mettre leur opacité à true pour pouvoir voir s'ils étaient enclenchés 
+        // ou non avant d'être disabled
+        for (javax.swing.JButton tiltAngleButton : tiltAngleButtons) {
+            tiltAngleButton.setOpaque(true); 
+        }
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
