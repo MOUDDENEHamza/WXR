@@ -5,6 +5,10 @@
 
 package wxr;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ncazes2
@@ -15,16 +19,19 @@ public class WXR extends javax.swing.JFrame {
         // Premier état : tous les boutons du panneau Mode sont accessibles, 
         // dans le panneau Tilt Angle, on peut appuyer sur Manual ou Auto (on est en Mode auto)
         E1(true, true, true, true, true, 
-            true, true, false, false, false, false),
+            false, true, false, false, false, false),
         // Deuxième état : tous les boutons du panneau Mode sont accessibles, 
         // dans le panneau Tilt Angle, les boutons Manual, Auto et ceux de la 
         // stabilisation sont accesibles
         E2(true, true, true, true, true, 
-            true, true, true, true, false, false),
+            false, true, false, true, false, false),
         // Troisième état : tous les boutons du panneau Mode sont accessibles, 
         // ainsi que ceux du panneau Tilt Angle
         E3(true, true, true, true, true, 
-            true, true, true, true, true, true);
+            false, false, true, true, true, true),
+        // Quatrième état
+        E4(true, true, true, true, true, 
+            true, false, false, false, false, false);
         
         // pour le panneau Mode
         private final Boolean wxonButtonEnabled;        
@@ -117,13 +124,21 @@ public class WXR extends javax.swing.JFrame {
     }
 
     // Etat courant 
-    private PossibleState currentState; 
+    private PossibleState currentState;
+    private List<javax.swing.JButton> modeButtons = new ArrayList<javax.swing.JButton>(); 
 
     /** Creates new form WXR */
     public WXR() {
         initComponents();
-        // Spécifier l'état initial (voir le graphique si besoin)
+        initColorOfTextFields(); 
+        // Spécifier l'état initial
         goToState(PossibleState.E1);
+        // Remplir la liste des boutons
+        modeButtons.add(wxaButton); 
+        modeButtons.add(wxonButton);
+        modeButtons.add(tstButton);
+        modeButtons.add(offModeButton);
+        modeButtons.add(stdbyButton);
     }
 
     public void goToState(PossibleState state) {
@@ -144,6 +159,32 @@ public class WXR extends javax.swing.JFrame {
         okButton.setEnabled(state.okButtonEnabled);
     }
 
+    public void colorOneModeButton(javax.swing.JButton button) {
+        for (javax.swing.JButton modeButton : modeButtons) {
+            modeButton.setBackground(Color.LIGHT_GRAY); 
+        }
+        button.setBackground(Color.GREEN);
+    }
+    
+    public void colorAutoOrManualButton(javax.swing.JButton button) {
+        autoButton.setBackground(Color.LIGHT_GRAY);
+        manualButton.setBackground(Color.LIGHT_GRAY);
+        
+        button.setBackground(Color.GREEN);
+    }
+    
+    public void colorOnOrOffStabilizationButton(javax.swing.JButton button) {
+        onStabilizationButton.setBackground(Color.LIGHT_GRAY);
+        offStabilizationButton.setBackground(Color.LIGHT_GRAY);
+        
+        button.setBackground(Color.GREEN);
+    }
+    
+    public void initColorOfTextFields() {
+        currentValueTiltAngleDisplayTextField.setOpaque(true); 
+        currentValueTiltAngleDisplayTextField.setBackground(new Color(238, 238, 238));
+        currentValueTiltAngleTextField.setBackground(new Color(238, 238, 238));
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -389,12 +430,11 @@ public class WXR extends javax.swing.JFrame {
         switch(currentState) {
             case E1:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E2:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E3:
                 // On ne fait rien, on reste dans le même état
+                colorOneModeButton(wxonButton);
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -405,13 +445,12 @@ public class WXR extends javax.swing.JFrame {
         switch(currentState) {
             case E1:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E2:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E3:
                 // On ne fait rien, on reste dans le même état
-                break; 
+                colorOneModeButton(tstButton);
+                break;
             default: 
                 throw new IllegalStateException(); 
         }
@@ -421,13 +460,12 @@ public class WXR extends javax.swing.JFrame {
        switch(currentState) {
             case E1:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E2:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E3:
                 // On ne fait rien, on reste dans le même état
-                break; 
+                colorOneModeButton(wxaButton);
+                break;
             default: 
                 throw new IllegalStateException(); 
         }
@@ -436,13 +474,12 @@ public class WXR extends javax.swing.JFrame {
     private void offModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offModeButtonActionPerformed
        switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
-                break; 
+                // On reste dans le même état
             case E2:
-                // On ne fait rien, on reste dans le même état
-                break; 
+                // 0n reste dans le même état
             case E3:
                 // On ne fait rien, on reste dans le même état
+                colorOneModeButton(offModeButton);
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -453,12 +490,11 @@ public class WXR extends javax.swing.JFrame {
        switch(currentState) {
             case E1:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E2:
                 // On ne fait rien, on reste dans le même état
-                break; 
             case E3:
                 // On ne fait rien, on reste dans le même état
+                colorOneModeButton(stdbyButton);
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -468,13 +504,16 @@ public class WXR extends javax.swing.JFrame {
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
        switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+                colorAutoOrManualButton(autoButton);
                 break; 
             case E2:
-                goToState(PossibleState.E1); 
+                goToState(PossibleState.E1);
+                colorAutoOrManualButton(autoButton);
                 break; 
             case E3:
-                goToState(PossibleState.E1); 
+                goToState(PossibleState.E1);
+                colorAutoOrManualButton(autoButton); 
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -484,13 +523,16 @@ public class WXR extends javax.swing.JFrame {
     private void manualButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualButtonActionPerformed
        switch(currentState) {
             case E1:
+                colorAutoOrManualButton(manualButton);
                 goToState(PossibleState.E2);
                 break; 
             case E2:
                 // On ne fait rien, on reste dans le même état
+                colorAutoOrManualButton(manualButton);
                 break; 
             case E3:
                 // On ne fait rien, on reste dans le même état
+                colorAutoOrManualButton(manualButton);
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -502,9 +544,11 @@ public class WXR extends javax.swing.JFrame {
             case E1:
                 throw new IllegalStateException();
             case E2:
-                goToState(PossibleState.E3);
+                // On reste dans le même état
+                colorOnOrOffStabilizationButton(onStabilizationButton);
                 break; 
             case E3:
+                colorOnOrOffStabilizationButton(onStabilizationButton);
                 goToState(PossibleState.E2);
                 break; 
             default: 
@@ -517,10 +561,12 @@ public class WXR extends javax.swing.JFrame {
             case E1:
                 throw new IllegalStateException();
             case E2:
-                // On ne fait rien, on reste dans le même état
+                colorOnOrOffStabilizationButton(offStabilizationButton);
+                goToState(PossibleState.E3);
                 break; 
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+                colorOnOrOffStabilizationButton(offStabilizationButton);
                 break; 
             default: 
                 throw new IllegalStateException(); 
@@ -534,7 +580,12 @@ public class WXR extends javax.swing.JFrame {
             case E2:
                 throw new IllegalStateException(); 
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+                // Récupérer la valeur saisie
+                String newValueTiltAngle = newValueTiltAngleDisplayTextField.getText();
+                // L'afficher
+                currentValueTiltAngleDisplayTextField.setText(newValueTiltAngle); 
+                
                 break; 
             default: 
                 throw new IllegalStateException();
