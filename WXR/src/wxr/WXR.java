@@ -533,14 +533,12 @@ public class WXR extends javax.swing.JFrame {
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
        switch(currentState) {
             case E1:
-                // On reste dans le même état
-                colorAutoOrManualButton(autoButton);
-                break; 
+                throw new IllegalStateException(); 
             case E2:
-                goToState(PossibleState.E1);
-                colorAutoOrManualButton(autoButton);
-                break; 
+                throw new IllegalStateException();
             case E3:
+                throw new IllegalStateException();
+            case E4:
                 goToState(PossibleState.E1);
                 colorAutoOrManualButton(autoButton); 
                 break; 
@@ -556,13 +554,13 @@ public class WXR extends javax.swing.JFrame {
                 goToState(PossibleState.E2);
                 break; 
             case E2:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
                 colorAutoOrManualButton(manualButton);
-                break; 
+                break;
             case E3:
-                // On ne fait rien, on reste dans le même état
-                colorAutoOrManualButton(manualButton);
-                break; 
+                throw new IllegalStateException();
+            case E4:
+                throw new IllegalStateException();
             default: 
                 throw new IllegalStateException(); 
         }
@@ -573,13 +571,13 @@ public class WXR extends javax.swing.JFrame {
             case E1:
                 throw new IllegalStateException();
             case E2:
-                // On reste dans le même état
-                colorOnOrOffStabilizationButton(onStabilizationButton);
-                break; 
+                throw new IllegalStateException(); 
             case E3:
                 colorOnOrOffStabilizationButton(onStabilizationButton);
-                goToState(PossibleState.E2);
+                goToState(PossibleState.E4);
                 break; 
+            case E4:
+                throw new IllegalStateException();
             default: 
                 throw new IllegalStateException(); 
         }
@@ -594,9 +592,9 @@ public class WXR extends javax.swing.JFrame {
                 goToState(PossibleState.E3);
                 break; 
             case E3:
-                // On reste dans le même état
-                colorOnOrOffStabilizationButton(offStabilizationButton);
-                break; 
+                throw new IllegalStateException();
+            case E4:
+                throw new IllegalStateException();
             default: 
                 throw new IllegalStateException(); 
         }
@@ -609,13 +607,15 @@ public class WXR extends javax.swing.JFrame {
             case E2:
                 throw new IllegalStateException(); 
             case E3:
-                // On reste dans le même état
                 // Récupérer la valeur saisie
                 String newValueTiltAngle = newValueTiltAngleDisplayTextField.getText();
                 // L'afficher
                 currentValueTiltAngleDisplayTextField.setText(newValueTiltAngle); 
                 
-                break; 
+                goToState(PossibleState.E4);
+                break;
+            case E4:
+                throw new IllegalStateException();
             default: 
                 throw new IllegalStateException();
         }   
