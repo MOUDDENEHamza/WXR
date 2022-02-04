@@ -448,11 +448,13 @@ public class WXR extends javax.swing.JFrame {
     private void wxonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxonButtonActionPerformed
         switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E2:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+            case E4:
+                // On reste dans le même état
                 colorOneModeButton(wxonButton);
                 break; 
             default: 
@@ -463,11 +465,13 @@ public class WXR extends javax.swing.JFrame {
     private void tstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tstButtonActionPerformed
         switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E2:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+            case E4:
+                // On reste dans le même état
                 colorOneModeButton(tstButton);
                 break;
             default: 
@@ -478,15 +482,17 @@ public class WXR extends javax.swing.JFrame {
     private void wxaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wxaButtonActionPerformed
        switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E2:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+            case E4:
+                // On reste dans le même état
                 colorOneModeButton(wxaButton);
                 break;
             default: 
-                throw new IllegalStateException(); 
+                throw new IllegalStateException();
         }
     }//GEN-LAST:event_wxaButtonActionPerformed
 
@@ -495,11 +501,13 @@ public class WXR extends javax.swing.JFrame {
             case E1:
                 // On reste dans le même état
             case E2:
-                // 0n reste dans le même état
+                // On reste dans le même état
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+            case E4:
+                // On reste dans le même état
                 colorOneModeButton(offModeButton);
-                break; 
+                break;
             default: 
                 throw new IllegalStateException(); 
         }
@@ -508,15 +516,17 @@ public class WXR extends javax.swing.JFrame {
     private void stdbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdbyButtonActionPerformed
        switch(currentState) {
             case E1:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E2:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
             case E3:
-                // On ne fait rien, on reste dans le même état
+                // On reste dans le même état
+            case E4:
+                // On reste dans le même état
                 colorOneModeButton(stdbyButton);
-                break; 
+                break;
             default: 
-                throw new IllegalStateException(); 
+                throw new IllegalStateException();
         }
     }//GEN-LAST:event_stdbyButtonActionPerformed
 
