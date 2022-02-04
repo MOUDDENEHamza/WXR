@@ -28,7 +28,7 @@ public class WXR extends javax.swing.JFrame {
         // Troisième état : tous les boutons du panneau Mode sont accessibles, 
         // ainsi que ceux du panneau Tilt Angle
         E3(true, true, true, true, true, 
-            false, false, true, true, true, true),
+            false, false, true, false, true, true),
         // Quatrième état
         E4(true, true, true, true, true, 
             true, false, false, false, false, false);
